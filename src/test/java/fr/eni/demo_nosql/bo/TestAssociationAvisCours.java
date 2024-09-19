@@ -12,9 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.eni.demo_nosql.dal.AvisRepository;
 import fr.eni.demo_nosql.dal.CoursRepository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class TestAssociationAvisCours {
@@ -58,9 +56,9 @@ class TestAssociationAvisCours {
 		assertThat(avisDB.getId()).isNotBlank();
 
 		// Vérifier que le Cours est complet
-		assertThat(avisDB.getCours().getId()).isNotNull();
+		assertThat(avisDB.getCours().getReference()).isNotNull();
 		assertThat(avisDB.getCours()).isEqualTo(coursDB);
 
-		log.info(avisDB.toString());
+		System.out.println(avisDB.toString());
 	}
 }

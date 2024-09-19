@@ -12,9 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.eni.demo_nosql.dal.AvisRepository;
 import fr.eni.demo_nosql.dal.FormateurRepository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class TestAssociationAvisFormateur {
@@ -63,7 +61,7 @@ class TestAssociationAvisFormateur {
 		assertThat(avisDB.getFormateur().getEmail()).isNotNull();
 		final String emailDB = avisDB.getFormateur().getEmail();
 		assertThat(emailDB).isEqualTo(formateur.getEmail());
-		log.info(avisDB.toString());
+		System.out.println(avisDB.toString());
 		//Remarquer que seul l'identifiant du Formateur est présent. Les autres attributs sont nuls
 		// Pour récupérer les données du Formateur -> il faudrait une seconde requête
 	}

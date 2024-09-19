@@ -3,8 +3,9 @@ package fr.eni.demo_nosql.dal;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import fr.eni.demo_nosql.bo.Cours;
-import fr.eni.demo_nosql.bo.CoursId;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-public interface CoursRepository extends MongoRepository<Cours, CoursId>{
+@RepositoryRestResource(path = "cours", collectionResourceRel = "cours")
+public interface CoursRepository extends MongoRepository<Cours, String>{
 
 }

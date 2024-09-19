@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -16,9 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import fr.eni.demo_nosql.dal.AvisRepository;
 import fr.eni.demo_nosql.dal.CoursRepository;
 import fr.eni.demo_nosql.dal.FormateurRepository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class TestRequetes {
@@ -53,21 +50,15 @@ class TestRequetes {
 		final List<Cours> listeCours = new ArrayList<>();
 		listeCours.add(Cours
 				.builder()
-				.id(CoursId
-						.builder()
-						.reference("M030")
-						.filiere("Développement")
-						.build())
+				.reference("M030")
+				.filiere("Développement")
 				.titre("Web Client")
 				.duree(5)
 				.build());
 		listeCours.add(Cours
 				.builder()
-				.id(CoursId
-						.builder()
-						.reference("M070")
-						.filiere("Développement")
-						.build())
+				.reference("M070")
+				.filiere("Développement")
 				.titre("POO")
 				.duree(10)
 				.build());
@@ -132,7 +123,7 @@ class TestRequetes {
 		assertThat(listeAvis).isNotNull();
 		assertThat(listeAvis).isNotEmpty();
 		assertThat(listeAvis.size()).isGreaterThan(1);
-		log.info("Le nombre d'Avis avec une note = 3 est de : " + listeAvis.size());
+		System.out.println("Le nombre d'Avis avec une note = 3 est de : " + listeAvis.size());
 	}
 
 	// Test en échec car les données insérées ne génèrent aucune note supérieure à 3
@@ -142,7 +133,7 @@ class TestRequetes {
 		assertThat(listeAvis).isNotNull();
 		assertThat(listeAvis).isNotEmpty();
 		assertThat(listeAvis.size()).isGreaterThan(1);
-		log.info("Le nombre d'Avis avec une note > 3 est de : " + listeAvis.size());
+		System.out.println("Le nombre d'Avis avec une note > 3 est de : " + listeAvis.size());
 	}
 
 	@Test
@@ -151,7 +142,7 @@ class TestRequetes {
 		assertThat(listeAvis).isNotNull();
 		assertThat(listeAvis).isNotEmpty();
 		assertThat(listeAvis.size()).isGreaterThan(1);
-		log.info("Le nombre d'Avis avec une note < 3 est de : " + listeAvis.size());
+		System.out.println("Le nombre d'Avis avec une note < 3 est de : " + listeAvis.size());
 	}
 
 	@Test
@@ -162,12 +153,12 @@ class TestRequetes {
 				.promotion("CDA12341")
 				.build();
 
-		List<Avis> listeAvis = avisRepository.findByStagiaire(stagiaire);
+		List<Avis> listeAvis = avisRepository.findByStagiaireImmatriculation(stagiaire.getImmatriculation());
 		assertThat(listeAvis).isNotNull();
 		assertThat(listeAvis).isNotEmpty();
 		assertThat(listeAvis.size()).isGreaterThan(1);
-		log.info("Nb Avis du Stagiaire (" + stagiaire.toString() + ") : " + listeAvis.size());
-		log.info(listeAvis.toString());
+		System.out.println("Nb Avis du Stagiaire (" + stagiaire.toString() + ") : " + listeAvis.size());
+		System.out.println(listeAvis.toString());
 	}
 
 	@Test
@@ -179,23 +170,20 @@ class TestRequetes {
 				.prenom("Philippe")
 				.build();
 
-		List<Avis> listeAvis = avisRepository.findByFormateur(philippe);
+		List<Avis> listeAvis = avisRepository.findByFormateurEmail(philippe.getEmail());
 		assertThat(listeAvis).isNotNull();
 		assertThat(listeAvis).isNotEmpty();
 		assertThat(listeAvis.size()).isGreaterThan(1);
-		log.info("Nb Avis sur le Formateur (" + philippe.toString() + ") : " + listeAvis.size());
-		log.info(listeAvis.toString());
+		System.out.println("Nb Avis sur le Formateur (" + philippe.toString() + ") : " + listeAvis.size());
+		System.out.println(listeAvis.toString());
 	}
 
 	@Test
 	void test06_findByCours() {
 		final Cours cours = Cours
 				.builder()
-				.id(CoursId
-						.builder()
-						.reference("M070")
-						.filiere("Développement")
-						.build())
+				.reference("M070")
+				.filiere("Développement")
 				.titre("POO")
 				.duree(10)
 				.build();
@@ -204,7 +192,7 @@ class TestRequetes {
 		assertThat(listeAvis).isNotNull();
 		assertThat(listeAvis).isNotEmpty();
 		assertThat(listeAvis.size()).isGreaterThan(1);
-		log.info("Nb Avis sur le Cours (" + cours.toString() + ") : " + listeAvis.size());
-		log.info(listeAvis.toString());
+		System.out.println("Nb Avis sur le Cours (" + cours.toString() + ") : " + listeAvis.size());
+		System.out.println(listeAvis.toString());
 	}
 }

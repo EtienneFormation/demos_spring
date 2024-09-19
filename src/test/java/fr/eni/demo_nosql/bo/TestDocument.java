@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.eni.demo_nosql.dal.AvisRepository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class TestDocument {
@@ -37,8 +35,8 @@ class TestDocument {
 		
 		//Vérifier que l'attribut commentaireCours est nul
 		assertThat(avisDB.getCommentaireCours()).isNull();
-		
-		log.info(avisDB.toString());
+
+		System.out.println(avisDB.toString());
 	}
 	
 	@Test
@@ -63,8 +61,8 @@ class TestDocument {
 		assertThat(avisDB.getNoteCours()).isNotNull();
 		assertThat(avisDB.getNoteCours()).isEqualTo(3);
 		assertThat(avisDB.getCommentaireCours()).isNotNull();
-		
-		log.info(avisDB.toString());
+
+		System.out.println(avisDB.toString());
 	}
 
 	@Test
@@ -73,6 +71,6 @@ class TestDocument {
 		assertThat(listeAvis).isNotNull();
 		assertThat(listeAvis).isNotEmpty();
 		assertThat(listeAvis.size()).isEqualTo(2);
-		log.info(listeAvis.toString());
+		System.out.println(listeAvis.toString());
 	}
 }

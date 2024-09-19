@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.eni.demo_nosql.dal.AvisRepository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class TestAssociationAvisStagiaire {
@@ -49,7 +47,7 @@ class TestAssociationAvisStagiaire {
 		final Stagiaire stagiaireDB = avisDB.getStagiaire();
 		assertThat(stagiaireDB).isNotNull();
 		assertThat(stagiaireDB).isEqualTo(stagiaire);
-		
-		log.info(avisDB.toString());
+
+		System.out.println(avisDB.toString());
 	}
 }

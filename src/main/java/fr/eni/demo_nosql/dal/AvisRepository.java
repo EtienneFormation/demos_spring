@@ -9,7 +9,9 @@ import fr.eni.demo_nosql.bo.Avis;
 import fr.eni.demo_nosql.bo.Cours;
 import fr.eni.demo_nosql.bo.Formateur;
 import fr.eni.demo_nosql.bo.Stagiaire;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@RepositoryRestResource(path = "avis", collectionResourceRel = "avis")
 public interface AvisRepository extends MongoRepository<Avis, String> {
 
 	/*
@@ -28,11 +30,11 @@ public interface AvisRepository extends MongoRepository<Avis, String> {
 	List<Avis> findByNoteCoursLessThan(@Param("noteCours") int noteCours);
 	
 	// Tous les avis d'un stagiaire
-	List<Avis> findByStagiaire(Stagiaire stagiaire);
+	List<Avis> findByStagiaireImmatriculation(String immatriculation);
 	
 	// Tous les avis sur un formateur
-	List<Avis> findByFormateur(Formateur formateur);
+	List<Avis> findByFormateurEmail(String email);
 	
 	// Tous les avis sur un cours
-	List<Avis> findByCours(Cours cours);
+	List<Avis> findByCoursReference(String reference);
 }

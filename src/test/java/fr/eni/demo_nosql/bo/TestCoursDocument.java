@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.eni.demo_nosql.dal.CoursRepository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootTest
 class TestCoursDocument {
 
@@ -20,15 +18,10 @@ class TestCoursDocument {
 
 	@Test
 	void test_save_cours() {
-		CoursId coursId = CoursId
+		Cours cours = Cours
 				.builder()
 				.reference("M360")
 				.filiere("Développement")
-				.build();
-		
-		Cours cours = Cours
-				.builder()
-				.id(coursId)
 				.titre("Java Frameworks - API Web")
 				.duree(10)
 				.build();
@@ -36,7 +29,7 @@ class TestCoursDocument {
 		
 
 		//Vérification en base
-		Optional<Cours> opt = coursRepository.findById(coursId);
+		Optional<Cours> opt = coursRepository.findById("M360");
 		assertThat(opt).isNotNull();
 		assertThat(opt.isPresent()).isTrue();
 		
@@ -44,7 +37,6 @@ class TestCoursDocument {
 		assertThat(coursDB).isNotNull();
 		assertThat(coursDB.getTitre()).isNotNull();
 		assertThat(coursDB.getDuree()).isEqualTo(10);
-		
-		log.info(coursDB.toString());
+		System.out.println(coursDB.toString());
 	}
 }

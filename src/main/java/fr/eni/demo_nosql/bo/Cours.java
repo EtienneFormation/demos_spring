@@ -15,7 +15,8 @@ import lombok.NoArgsConstructor;
 @Document(collection = "computer_course")
 public class Cours {
 	@Id
-	private CoursId id;
+	private String reference;
+	private String filiere;
 	private String titre;
 	private int duree;
 }

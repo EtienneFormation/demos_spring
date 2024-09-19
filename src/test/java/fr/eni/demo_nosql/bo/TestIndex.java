@@ -11,9 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DuplicateKeyException;
 
 import fr.eni.demo_nosql.dal.FormateurRepository;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class TestIndex {
@@ -41,7 +39,7 @@ class TestIndex {
 		assertThat(formateurDB.getNom()).isNotNull();
 		assertThat(formateurDB.getPrenom()).isNotNull();
 
-		log.info(formateurDB.toString());
+		System.out.println(formateurDB.toString());
 	}
 
 	@Test
@@ -86,8 +84,8 @@ class TestIndex {
 		// Vérifier que les attributs nom et prenom SONT NULS
 		assertThat(formateurDB.getNom()).isNull();
 		assertThat(formateurDB.getPrenom()).isNull();
-		
-		log.info(formateurDB.toString());
+
+		System.out.println(formateurDB.toString());
 		
 		//Supprimer ce Formateur incorrect
 		formateurRepository.delete(formateurDB);
